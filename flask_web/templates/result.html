@@ -41,42 +41,11 @@
         <br> Lingkaran kedua yang berada pada tengah-tengah merupakan semua baris unik dari kolom Alasan minat jurusan
         <br> Lingkaran yang paling luar merupakan semua baris unik dari kolom Alasan masuk pens
         <br>
-        <br> hover pada potongan plot tertentu untuk menampilkan informasi lebih lanjut
+        <br> Arahkan kursor mouse pada potongan plot tertentu untuk menampilkan informasi lebih lanjut
         <br> klik pada potongan plot tertentu untuk zoom in pada potongan tersebut, klik lagi pada potongan yang sama
         untuk zoom out
-<!--        <br> Jika dilihat dalam bentuk tabel akan seperti berikut :-->
     </p>
-<!--    <table class="customers">-->
-<!--    <tr>-->
-<!--        <th>Jurusan</th>-->
-<!--        <th>Alasan minat jurusan</th>-->
-<!--        <th>Alasan masuk pens</th>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td>Jurusan1</td>-->
-<!--        <td>Alasan minat jurusan1</td>-->
-<!--        <td>Alasan masuk pens1</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td>Jurusan1</td>-->
-<!--        <td>Alasan minat jurusan1</td>-->
-<!--        <td>Alasan masuk pens2</td>-->
-<!--    </tr>-->
-<!--        <td>Jurusan1</td>-->
-<!--        <td>Alasan minat jurusan3</td>-->
-<!--        <td>Alasan masuk pens3</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--        <td>Jurusan1</td>-->
-<!--        <td>Alasan minat jurusan3</td>-->
-<!--        <td>Alasan masuk pens4</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--        <td>Jurusan1</td>-->
-<!--        <td>Alasan minat jurusan3</td>-->
-<!--        <td>Alasan masuk pens4</td>-->
-<!--        </tr>-->
-<!--    </table>-->
+
 
 
     <br>
@@ -138,6 +107,10 @@
         </tbody>
     </table>
 
+
+
+
+
     <h2>Cluster Result</h2>
 
     <h3>Cluster 1</h3>
@@ -165,6 +138,49 @@
         </tbody>
     </table>
 
+
+    <table class="customers">
+        <thead>
+            <tr>
+                {% for column in column_jurusan1 %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_jurusan_clust1 %}
+                <tr>
+                    {% for column in column_jurusan1 %}
+                        <td>{{ row[column] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="customers">
+        <thead>
+            <tr>
+                {% for column in column_pens1 %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_pens_clust1 %}
+                <tr>
+                    {% for column in column_pens1 %}
+                        <td>{{ row[column] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
     <h3>Cluster 2</h3>
     <iframe src="{{ cluster1_url }}" width="800" height="600"></iframe>
     <br>
@@ -191,10 +207,43 @@
         </tbody>
     </table>
 
-<!--    <div class="container">-->
-<!--        <h1>Processing Result</h1>-->
-<!--        <p>{{ result }}</p>-->
-<!--    </div>-->
+    <table class="customers">
+        <thead>
+            <tr>
+                {% for column in column_jurusan2 %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_jurusan_clust2 %}
+                <tr>
+                    {% for column in column_jurusan2 %}
+                        <td>{{ row[column] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="customers">
+        <thead>
+            <tr>
+                {% for column in column_pens2 %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_pens_clust2 %}
+                <tr>
+                    {% for column in column_pens2 %}
+                        <td>{{ row[column] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 </body>
 </html>

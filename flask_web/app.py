@@ -150,7 +150,12 @@ def process_file(filename):
         # TABEL EXCEL
         'raw_data_table': 'static/raw_data_table.xlsx',
         'baris_cluster0': 'static/baris_cluster1.xlsx',
-        'baris_cluster1': 'static/baris_cluster2.xlsx'
+        'baris_cluster1': 'static/baris_cluster2.xlsx',
+
+        'minat_jurusan_total_cluster1': 'static/minat_jurusan_cluster1.xlsx',
+        'minat_pens_total_cluster1': 'static/minat_pens_cluster1.xlsx',
+        'minat_jurusan_total_cluster2': 'static/minat_jurusan_cluster2.xlsx',
+        'minat_pens_total_cluster2': 'static/minat_pens_cluster2.xlsx'
     }
 
     if not all(os.path.exists(path) for path in result_files.values()):
@@ -159,7 +164,28 @@ def process_file(filename):
 
     cluster_count1 = pd.read_excel(result_files['baris_cluster0'])
     cluster_count2 = pd.read_excel(result_files['baris_cluster1'])
+
+    minat_jurusan_cluster1 = pd.read_excel(result_files['minat_jurusan_total_cluster1'])
+    minat_pens_cluster1 = pd.read_excel(result_files['minat_pens_total_cluster1'])
+    minat_jurusan_cluster2 = pd.read_excel(result_files['minat_jurusan_total_cluster2'])
+    minat_pens_cluster2 = pd.read_excel(result_files['minat_pens_total_cluster2'])
+
     raw_data = pd.read_excel(result_files['raw_data_table'])
+
+
+
+    table_jurusan_cluster1 = minat_jurusan_cluster1.to_dict(orient='records')
+    column_jurusan_cluster1 = minat_jurusan_cluster1.columns.tolist()
+
+    table_pens_cluster1 = minat_pens_cluster1.to_dict(orient='records')
+    column_pens_cluster1 = minat_pens_cluster1.columns.tolist()
+
+    table_jurusan_cluster2 = minat_jurusan_cluster2.to_dict(orient='records')
+    column_jurusan_cluster2 = minat_jurusan_cluster2.columns.tolist()
+
+    table_pens_cluster2 = minat_pens_cluster2.to_dict(orient='records')
+    column_pens_cluster2 = minat_pens_cluster2.columns.tolist()
+
 
     table_data_cluster1 = cluster_count1.to_dict(orient='records')
     columns_cluster1 = cluster_count1.columns.tolist()
@@ -190,6 +216,19 @@ def process_file(filename):
         columns_cluster1=columns_cluster1,
         table_data_cluster2=table_data_cluster2,
         columns_cluster2=columns_cluster2,
+
+        table_jurusan_clust1=table_jurusan_cluster1,
+        column_jurusan1=column_jurusan_cluster1,
+
+        table_pens_clust1=table_pens_cluster1,
+        column_pens1=column_pens_cluster1,
+
+        table_jurusan_clust2=table_jurusan_cluster2,
+        column_jurusan2=column_jurusan_cluster2,
+
+        table_pens_clust2=table_pens_cluster2,
+        column_pens2=column_pens_cluster2,
+
         table_data_raw=table_data_raw,
         columns_raw=columns_raw,
         result=result

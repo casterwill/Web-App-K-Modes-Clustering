@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Task Progress</h1>
+    <div id="progress">
+        <p>Loading...</p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var taskId = "{{ task_id }}";
+
+            function updateProgress() {
+                $.get("/status/" + taskId, function(data) {
+                    if (data.state == 'finished') {
+                        $('#progress').html('<p>Task completed successfully! <a href="/result/' + taskId + '">View result</a></p>');
+                    } else if (data.state == 'failed') {
+                        $('#progress').html('<p>Task failed: ' + data.status + '</p>');
+                    } else {
+                        $('#progress').html('<p>Task status: ' + data.status + '</p>');
+                        setTimeout(updateProgress, 2000);
+                    }
+                });
+            }
+
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

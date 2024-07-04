@@ -56,6 +56,21 @@
             color: #fff; /* Ubah sesuai kebutuhan */
             z-index: 1;
         }
+
+        .iframe-container {
+            /*overflow: hidden;*/
+            /*padding-top: 56.25%; !* 16:9 Aspect Ratio *!*/
+            /*position: relative;*/
+        }
+
+        .iframe-container iframe {
+            border: 0;
+            height: 600px;
+            left: 0;
+            /*position: absolute;*/
+            top: 0;
+            width: 800px;
+        }
     </style>
 
 </head>
@@ -64,7 +79,7 @@
 <!--    <p>Status: {{ result.status }}</p>-->
 
 <h1>Panduan untuk memahami plot</h1>
-<iframe src="{{ plot_example_url }}" width="800" height="600"></iframe>
+<iframe src="{{ plot_example_url }}" width="800" height="600" title="plot example"></iframe>
 <p>Lingkaran yang paling dalam merupakan semua baris unik dari kolom Jurusan
     <br> Lingkaran kedua yang berada pada tengah-tengah merupakan semua baris unik dari kolom Alasan minat jurusan
     <br> Lingkaran yang paling luar merupakan semua baris unik dari kolom Alasan masuk pens
@@ -115,7 +130,7 @@
 <h2>Data Preview</h2>
 <div class="row">
     <div class="col">
-        <iframe src="{{ preview_url }}" width="800" height="600"></iframe>
+        <iframe src="{{ preview_url }}" width="800" height="600" title="plot data mentah"></iframe>
     </div>
 
     <div class="col">
@@ -125,17 +140,17 @@
                 <thead>
                 <tr>
                     {% for column in columns_raw %}
-                        <th>{{ column }}</th>
+                    <th>{{ column }}</th>
                     {% endfor %}
                 </tr>
                 </thead>
                 <tbody>
                 {% for row in table_data_raw %}
-                    <tr>
-                        {% for column in columns_raw %}
-                            <td>{{ row[column] }}</td>
-                        {% endfor %}
-                    </tr>
+                <tr>
+                    {% for column in columns_raw %}
+                    <td>{{ row[column] }}</td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
                 </tbody>
             </table>
@@ -147,22 +162,49 @@
 <h2>Cluster Result</h2>
 
 <h3>Cluster 1</h3>
-<iframe src="{{ cluster0_url }}" width="800" height="600" class="justify-content-center"></iframe>
-<br>
 <div class="row">
     <div class="col">
-        <iframe src="{{ percent_it_clust1 }}" width="800" height="600"></iframe>
+        <iframe src="{{ cluster0_url }}" width="800" height="600" title="cluster1 plot"></iframe>
+    </div>
+    <div class="col table-container">
+        <table class="customers">
+            <thead>
+            <tr>
+                {% for column in column_clust1 %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in clust1_table %}
+            <tr>
+                {% for column in column_clust1 %}
+                <td>{{ row[column] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="iframe-container">
+            <iframe src="{{ percent_it_clust1 }}" title="percent it clust1"></iframe>
+        </div>
     </div>
 
-    <div class="col">
-        <iframe src="{{ percent_mmb_clust1 }}" width="800" height="600"></iframe>
+    <div class="col-md-6">
+        <div class="iframe-container">
+            <iframe src="{{ percent_mmb_clust1 }}" title="percent mmb clust1"></iframe>
+        </div>
     </div>
 </div>
 
 <div class="row">
-
     <div class="col">
-        <iframe src="{{ percent_pens_clust1 }}" width="800" height="600"></iframe>
+        <iframe src="{{ percent_pens_clust1 }}" width=800 height="600" title="percent pens clust1"></iframe>
     </div>
 
     <div class="col my-5">
@@ -170,65 +212,68 @@
             <thead>
             <tr>
                 {% for column in column_pens1 %}
-                    <th>{{ column }}</th>
+                <th>{{ column }}</th>
                 {% endfor %}
             </tr>
             </thead>
             <tbody>
             {% for row in table_pens_clust1 %}
-                <tr>
-                    {% for column in column_pens1 %}
-                        <td>{{ row[column] }}</td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<h3>Data Tabel cluster 1</h3>
-<div class="row">
-    <div class="col">
-        <table class="customers">
-            <thead>
             <tr>
-                {% for column in column_jurusan1 %}
-                    <th>{{ column }}</th>
+                {% for column in column_pens1 %}
+                <td>{{ row[column] }}</td>
                 {% endfor %}
             </tr>
-            </thead>
-            <tbody>
-            {% for row in table_jurusan_clust1 %}
-                <tr>
-                    {% for column in column_jurusan1 %}
-                        <td>{{ row[column] }}</td>
-                    {% endfor %}
-                </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
-
-
 </div>
 
 
 <h3>Cluster 2</h3>
-<iframe src="{{ cluster1_url }}" width="800" height="600"></iframe>
-<br>
 <div class="row">
     <div class="col">
-        <iframe src="{{ percent_it_clust2 }}" width="800" height="600"></iframe>
+        <iframe src="{{ cluster1_url }}" width="800" height="600" title="cluster 2 plot"></iframe>
     </div>
-    <div class="col">
-        <iframe src="{{ percent_mmb_clust2 }}" width="800" height="600"></iframe>
+    <div class="col table-container">
+        <table class="customers">
+            <thead>
+            <tr>
+                {% for column in column_clust2 %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in clust2_table %}
+            <tr>
+                {% for column in column_clust2 %}
+                <td>{{ row[column] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="iframe-container">
+            <iframe src="{{ percent_it_clust2 }}" title="percent it clust1"></iframe>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="iframe-container">
+            <iframe src="{{ percent_mmb_clust2 }}" title="percent it clust1"></iframe>
+        </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col">
-        <iframe src="{{ percent_pens_clust2 }}" width="800" height="600"></iframe>
+        <iframe src="{{ percent_pens_clust2 }}" width="800" height="600" title="percent pens clust2"></iframe>
     </div>
 
     <div class="col my-5">
@@ -236,50 +281,47 @@
             <thead>
             <tr>
                 {% for column in column_pens2 %}
-                    <th>{{ column }}</th>
+                <th>{{ column }}</th>
                 {% endfor %}
             </tr>
             </thead>
             <tbody>
             {% for row in table_pens_clust2 %}
-                <tr>
-                    {% for column in column_pens2 %}
-                        <td>{{ row[column] }}</td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-<h3>Data Tabel cluster 2</h3>
-
-<div class="row">
-    <div class="col">
-        <table class="customers">
-            <thead>
             <tr>
-                {% for column in column_jurusan2 %}
-                    <th>{{ column }}</th>
+                {% for column in column_pens2 %}
+                <td>{{ row[column] }}</td>
                 {% endfor %}
             </tr>
-            </thead>
-            <tbody>
-            {% for row in table_jurusan_clust2 %}
-                <tr>
-                    {% for column in column_jurusan2 %}
-                        <td>{{ row[column] }}</td>
-                    {% endfor %}
-                </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
-
-
 </div>
+
+
+<!--<h3>Data Tabel cluster 2</h3>-->
+<!--<div class="row">-->
+<!--    <div class="col">-->
+<!--        <table class="customers">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                {% for column in column_jurusan2 %}-->
+<!--                <th>{{ column }}</th>-->
+<!--                {% endfor %}-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            {% for row in table_jurusan_clust2 %}-->
+<!--            <tr>-->
+<!--                {% for column in column_jurusan2 %}-->
+<!--                <td>{{ row[column] }}</td>-->
+<!--                {% endfor %}-->
+<!--            </tr>-->
+<!--            {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

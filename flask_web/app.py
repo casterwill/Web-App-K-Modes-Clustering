@@ -157,12 +157,12 @@ def process_file(filename):
         # 'baris_cluster0': 'static/baris_cluster1.xlsx',
         # 'baris_cluster1': 'static/baris_cluster2.xlsx',
 
-        'minat_jurusan_total_cluster1': 'static/minat_jurusan_cluster1.xlsx',
+        'table_cluster0': 'static/cluster0_table.xlsx',
+        'table_cluster1': 'static/cluster1_table.xlsx',
 
-
-
+        # 'minat_jurusan_total_cluster1': 'static/minat_jurusan_cluster1.xlsx',
         'minat_pens_total_cluster1': 'static/minat_pens_cluster1.xlsx',
-        'minat_jurusan_total_cluster2': 'static/minat_jurusan_cluster2.xlsx',
+        # 'minat_jurusan_total_cluster2': 'static/minat_jurusan_cluster2.xlsx',
         'minat_pens_total_cluster2': 'static/minat_pens_cluster2.xlsx'
     }
 
@@ -173,27 +173,33 @@ def process_file(filename):
     # cluster_count1 = pd.read_excel(result_files['baris_cluster0'])
     # cluster_count2 = pd.read_excel(result_files['baris_cluster1'])
 
-    minat_jurusan_cluster1 = pd.read_excel(result_files['minat_jurusan_total_cluster1'])
+    # minat_jurusan_cluster1 = pd.read_excel(result_files['minat_jurusan_total_cluster1'])
     minat_pens_cluster1 = pd.read_excel(result_files['minat_pens_total_cluster1'])
-    minat_jurusan_cluster2 = pd.read_excel(result_files['minat_jurusan_total_cluster2'])
+    # minat_jurusan_cluster2 = pd.read_excel(result_files['minat_jurusan_total_cluster2'])
     minat_pens_cluster2 = pd.read_excel(result_files['minat_pens_total_cluster2'])
+
+    table_cluster1 = pd.read_excel(result_files['table_cluster0'])
+    table_cluster2 = pd.read_excel(result_files['table_cluster1'])
 
     raw_data = pd.read_excel(result_files['raw_data_table'])
 
-
-
-    table_jurusan_cluster1 = minat_jurusan_cluster1.to_dict(orient='records')
-    column_jurusan_cluster1 = minat_jurusan_cluster1.columns.tolist()
+    # table_jurusan_cluster1 = minat_jurusan_cluster1.to_dict(orient='records')
+    # column_jurusan_cluster1 = minat_jurusan_cluster1.columns.tolist()
 
     table_pens_cluster1 = minat_pens_cluster1.to_dict(orient='records')
     column_pens_cluster1 = minat_pens_cluster1.columns.tolist()
 
-    table_jurusan_cluster2 = minat_jurusan_cluster2.to_dict(orient='records')
-    column_jurusan_cluster2 = minat_jurusan_cluster2.columns.tolist()
+    # table_jurusan_cluster2 = minat_jurusan_cluster2.to_dict(orient='records')
+    # column_jurusan_cluster2 = minat_jurusan_cluster2.columns.tolist()
 
     table_pens_cluster2 = minat_pens_cluster2.to_dict(orient='records')
     column_pens_cluster2 = minat_pens_cluster2.columns.tolist()
 
+    cluter1_table = table_cluster1.to_dict(orient='records')
+    column_cluster1 = table_cluster1.columns.tolist()
+
+    cluter2_table = table_cluster2.to_dict(orient='records')
+    column_cluster2 = table_cluster2.columns.tolist()
 
     # table_data_cluster1 = cluster_count1.to_dict(orient='records')
     # columns_cluster1 = cluster_count1.columns.tolist()
@@ -229,23 +235,27 @@ def process_file(filename):
         # table_data_cluster2=table_data_cluster2,
         # columns_cluster2=columns_cluster2,
 
-        table_jurusan_clust1=table_jurusan_cluster1,
-        column_jurusan1=column_jurusan_cluster1,
+        # table_jurusan_clust1=table_jurusan_cluster1,
+        # column_jurusan1=column_jurusan_cluster1,
 
         table_pens_clust1=table_pens_cluster1,
         column_pens1=column_pens_cluster1,
 
-        table_jurusan_clust2=table_jurusan_cluster2,
-        column_jurusan2=column_jurusan_cluster2,
+        # table_jurusan_clust2=table_jurusan_cluster2,
+        # column_jurusan2=column_jurusan_cluster2,
 
         table_pens_clust2=table_pens_cluster2,
         column_pens2=column_pens_cluster2,
+
+        clust1_table=cluter1_table,
+        column_clust1=column_cluster1,
+        clust2_table=cluter2_table,
+        column_clust2=column_cluster2,
 
         table_data_raw=table_data_raw,
         columns_raw=columns_raw,
         result=result
     )
-
 
 if __name__ == '__main__':
     # app.run()

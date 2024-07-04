@@ -142,17 +142,25 @@ def process_file(filename):
         'output_cluster1_path': 'static/cluster1_result.html',
 
         # PLOT PRESENTASE NILAI BARIS UNIK
-        'percentage_jurusan_cluster1': 'static/cluster0_alasan_jurusan.html',
+        'percent_IT_clust0': 'static/percent_IT_clust0.html',
+        'percent_MMB_clust0': 'static/percent_MMB_clust0.html',
+        'percent_IT_clust1': 'static/percent_IT_clust1.html',
+        'percent_MMB_clust1': 'static/percent_IT_clust1.html',
+
+        # 'percentage_jurusan_cluster1': 'static/cluster0_alasan_jurusan.html',
         'percentage_pens_cluster1': 'static/cluster0_alasan_pens.html',
-        'percentage_jurusan_cluster2': 'static/cluster1_alasan_jurusan.html',
+        # 'percentage_jurusan_cluster2': 'static/cluster1_alasan_jurusan.html',
         'percentage_pens_cluster2': 'static/cluster1_alasan_pens.html',
 
         # TABEL EXCEL
         'raw_data_table': 'static/raw_data_table.xlsx',
-        'baris_cluster0': 'static/baris_cluster1.xlsx',
-        'baris_cluster1': 'static/baris_cluster2.xlsx',
+        # 'baris_cluster0': 'static/baris_cluster1.xlsx',
+        # 'baris_cluster1': 'static/baris_cluster2.xlsx',
 
         'minat_jurusan_total_cluster1': 'static/minat_jurusan_cluster1.xlsx',
+
+
+
         'minat_pens_total_cluster1': 'static/minat_pens_cluster1.xlsx',
         'minat_jurusan_total_cluster2': 'static/minat_jurusan_cluster2.xlsx',
         'minat_pens_total_cluster2': 'static/minat_pens_cluster2.xlsx'
@@ -162,8 +170,8 @@ def process_file(filename):
         flash('Clustering process failed.')
         return redirect(url_for('home'))
 
-    cluster_count1 = pd.read_excel(result_files['baris_cluster0'])
-    cluster_count2 = pd.read_excel(result_files['baris_cluster1'])
+    # cluster_count1 = pd.read_excel(result_files['baris_cluster0'])
+    # cluster_count2 = pd.read_excel(result_files['baris_cluster1'])
 
     minat_jurusan_cluster1 = pd.read_excel(result_files['minat_jurusan_total_cluster1'])
     minat_pens_cluster1 = pd.read_excel(result_files['minat_pens_total_cluster1'])
@@ -187,11 +195,11 @@ def process_file(filename):
     column_pens_cluster2 = minat_pens_cluster2.columns.tolist()
 
 
-    table_data_cluster1 = cluster_count1.to_dict(orient='records')
-    columns_cluster1 = cluster_count1.columns.tolist()
-
-    table_data_cluster2 = cluster_count2.to_dict(orient='records')
-    columns_cluster2 = cluster_count2.columns.tolist()
+    # table_data_cluster1 = cluster_count1.to_dict(orient='records')
+    # columns_cluster1 = cluster_count1.columns.tolist()
+    #
+    # table_data_cluster2 = cluster_count2.to_dict(orient='records')
+    # columns_cluster2 = cluster_count2.columns.tolist()
 
     table_data_raw = raw_data.to_dict(orient='records')
     columns_raw = raw_data.columns.tolist()
@@ -208,14 +216,18 @@ def process_file(filename):
         preview_url=url_for('static', filename='data_preview.html'),
         cluster0_url=url_for('static', filename='cluster0_result.html'),
         cluster1_url=url_for('static', filename='cluster1_result.html'),
-        percent_jurusan_clust1=url_for('static', filename='cluster0_alasan_jurusan.html'),
+        # percent_jurusan_clust1=url_for('static', filename='cluster0_alasan_jurusan.html'),
+        percent_it_clust1=url_for('static', filename='percent_IT_clust0.html'),
+        percent_mmb_clust1=url_for('static', filename='percent_MMB_clust0.html'),
         percent_pens_clust1=url_for('static', filename='cluster0_alasan_pens.html'),
-        percent_jurusan_clust2=url_for('static', filename='cluster1_alasan_jurusan.html'),
+        # percent_jurusan_clust2=url_for('static', filename='cluster1_alasan_jurusan.html'),
+        percent_it_clust2=url_for('static', filename='percent_IT_clust1.html'),
+        percent_mmb_clust2=url_for('static', filename='percent_MMB_clust1.html'),
         percent_pens_clust2=url_for('static', filename='cluster1_alasan_pens.html'),
-        table_data_cluster1=table_data_cluster1,
-        columns_cluster1=columns_cluster1,
-        table_data_cluster2=table_data_cluster2,
-        columns_cluster2=columns_cluster2,
+        # table_data_cluster1=table_data_cluster1,
+        # columns_cluster1=columns_cluster1,
+        # table_data_cluster2=table_data_cluster2,
+        # columns_cluster2=columns_cluster2,
 
         table_jurusan_clust1=table_jurusan_cluster1,
         column_jurusan1=column_jurusan_cluster1,

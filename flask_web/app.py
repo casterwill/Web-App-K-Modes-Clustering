@@ -79,7 +79,8 @@ def upload_file():
         # return redirect(url_for('task_status', task_id=task.id))
     # else:
     flash('Allowed file type is .xlsx')
-    return redirect(request.url)
+    return redirect(url_for('home'))
+    # return redirect(request.url)
 
 def update_notebook_with_file_path(notebook_path, file_path):
     path_replaced = False
